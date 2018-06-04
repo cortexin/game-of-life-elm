@@ -12,6 +12,7 @@ type alias Options =
 type alias Model =
     { options : Options
     , grid : Matrix Cell
+    , state : State
     }
 
 
@@ -22,3 +23,9 @@ type Cell
 
 type Msg
     = RunGeneration
+    | SwitchState
+
+
+type State
+    = Paused
+    | Running

@@ -10,6 +10,18 @@ update msg model =
         RunGeneration ->
             ( { model | grid = runGeneration model }, Cmd.none )
 
+        SwitchState ->
+            let
+                newState =
+                    case model.state of
+                        Paused ->
+                            Running
+
+                        Running ->
+                            Paused
+            in
+                ( { model | state = newState }, Cmd.none )
+
 
 runGeneration : Model -> Matrix Cell
 runGeneration model =

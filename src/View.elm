@@ -1,10 +1,28 @@
 module View exposing (..)
 
 import Html exposing (..)
+import Html.Events exposing (onClick)
 import Matrix exposing (..)
 import Svg exposing (Svg, svg, rect, g)
 import Svg.Attributes exposing (..)
 import Types exposing (..)
+
+
+view : Model -> Html Msg
+view model =
+    let
+        btnText =
+            case model.state of
+                Running ->
+                    "stop"
+
+                Paused ->
+                    "start"
+    in
+        div []
+            [ button [ onClick SwitchState ] [ text btnText ]
+            , drawGrid model
+            ]
 
 
 cellColor : Model -> Matrix.Location -> String
@@ -13,7 +31,7 @@ cellColor model coord =
         Just x ->
             case x of
                 Alive ->
-                    "yellow"
+                    "white"
 
                 Empty ->
                     "black"
@@ -33,8 +51,8 @@ getViewBox options =
         "0 0 " ++ side ++ " " ++ side
 
 
-view : Model -> Html Msg
-view model =
+drawGrid : Model -> Html Msg
+drawGrid model =
     let
         sidePx =
             model.options.cells

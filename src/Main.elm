@@ -22,6 +22,7 @@ init =
                     else
                         Empty
                 )
+      , state = Paused
       }
     , Cmd.none
     )

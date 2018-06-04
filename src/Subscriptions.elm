@@ -6,4 +6,9 @@ import Types exposing (..)
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    every (200 * millisecond) (always RunGeneration)
+    case model.state of
+        Paused ->
+            Sub.none
+
+        Running ->
+            every (200 * millisecond) (always RunGeneration)
