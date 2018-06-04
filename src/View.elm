@@ -1,12 +1,17 @@
 module View exposing (..)
 
 import Html exposing (..)
+import Html.Attributes
 import Html.Events exposing (onClick)
 import Matrix exposing (..)
 import Svg exposing (Svg, svg, rect, g)
 import Svg.Attributes exposing (..)
 import Svg.Events
 import Types exposing (..)
+
+
+htclass =
+    Html.Attributes.class
 
 
 view : Model -> Html Msg
@@ -20,7 +25,7 @@ view model =
                 Paused ->
                     "start"
     in
-        div []
+        div [ htclass "center" ]
             [ button [ onClick SwitchState ] [ text btnText ]
             , drawGrid model
             ]
@@ -64,7 +69,11 @@ drawGrid model =
             List.range 0 (model.options.cells - 1)
     in
         svg
-            [ width sidePx, height sidePx, getViewBox model.options |> viewBox ]
+            [ class "block mx-auto"
+            , width sidePx
+            , height sidePx
+            , getViewBox model.options |> viewBox
+            ]
             (List.map
                 (drawRow model)
                 row

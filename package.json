@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "basscss": "8.0.2",
     "css-loader": "^0.28.11",
     "elm-webpack-loader": "^4.5.0",
     "file-loader": "^1.1.11",
