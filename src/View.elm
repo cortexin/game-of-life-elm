@@ -5,6 +5,7 @@ import Html.Events exposing (onClick)
 import Matrix exposing (..)
 import Svg exposing (Svg, svg, rect, g)
 import Svg.Attributes exposing (..)
+import Svg.Events
 import Types exposing (..)
 
 
@@ -97,5 +98,6 @@ drawCell model currY currX =
             , cellColor model p |> fill
             , stroke "grey"
             , strokeWidth "2"
+            , Svg.Events.onClick (InvertCell p)
             ]
             []

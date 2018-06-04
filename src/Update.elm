@@ -22,6 +22,33 @@ update msg model =
             in
                 ( { model | state = newState }, Cmd.none )
 
+        InvertCell p ->
+            ( { model | grid = invertCell model p }, Cmd.none )
+
+
+invertCell : Model -> Location -> Matrix Cell
+invertCell model p =
+    let
+        newCell =
+            case get p model.grid of
+                Just cell ->
+                    case cell of
+                        Alive ->
+                            Empty
+
+                        Empty ->
+                            Alive
+
+                Nothing ->
+                    Empty
+    in
+        case model.state of
+            Running ->
+                model.grid
+
+            Paused ->
+                set p newCell model.grid
+
 
 runGeneration : Model -> Matrix Cell
 runGeneration model =

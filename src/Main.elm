@@ -15,13 +15,7 @@ init =
             , cellSize = 20
             }
       , grid =
-            square 50
-                (\l ->
-                    if row l == 2 then
-                        Alive
-                    else
-                        Empty
-                )
+            square 50 (always Empty)
       , state = Paused
       }
     , Cmd.none

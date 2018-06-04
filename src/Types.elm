@@ -1,6 +1,6 @@
 module Types exposing (..)
 
-import Matrix exposing (Matrix)
+import Matrix exposing (Matrix, Location)
 
 
 type alias Options =
@@ -24,6 +24,7 @@ type Cell
 type Msg
     = RunGeneration
     | SwitchState
+    | InvertCell Location
 
 
 type State
