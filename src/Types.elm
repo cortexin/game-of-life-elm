@@ -25,6 +25,7 @@ type Msg
     = RunGeneration
     | SwitchState
     | InvertCell Location
+    | ClearGrid
 
 
 type State

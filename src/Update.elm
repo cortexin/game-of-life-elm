@@ -25,6 +25,9 @@ update msg model =
         InvertCell p ->
             ( { model | grid = invertCell model p }, Cmd.none )
 
+        ClearGrid ->
+            ( { model | grid = square model.options.cells (always Empty), state = Paused }, Cmd.none )
+
 
 invertCell : Model -> Location -> Matrix Cell
 invertCell model p =

@@ -26,7 +26,10 @@ view model =
                     "start"
     in
         div [ htclass "center" ]
-            [ button [ onClick SwitchState ] [ text btnText ]
+            [ div [ htclass "py2" ]
+                [ button [ onClick SwitchState ] [ text btnText ]
+                , button [ onClick ClearGrid ] [ text "Clear" ]
+                ]
             , drawGrid model
             ]
 
