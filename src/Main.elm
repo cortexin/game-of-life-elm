@@ -1,26 +1,30 @@
 module Main exposing (..)
 
 import Html exposing (..)
-import Matrix exposing (..)
+import Matrix exposing (square, row)
+import Subscriptions exposing (subscriptions)
 import Types exposing (..)
+import Update exposing (update)
 import View exposing (view)
 
 
 init : ( Model, Cmd Msg )
 init =
     ( { options =
-            { cells = 20
+            { cells = 50
             , cellSize = 20
             }
-      , grid = square 20 (always Empty)
+      , grid =
+            square 50
+                (\l ->
+                    if row l == 2 then
+                        Alive
+                    else
+                        Empty
+                )
       }
     , Cmd.none
     )
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    ( model, Cmd.none )
 
 
 main : Program Never Model Msg
@@ -29,5 +33,5 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = always Sub.none
+        , subscriptions = subscriptions
         }

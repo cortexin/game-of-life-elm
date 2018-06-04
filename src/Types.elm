@@ -15,11 +15,10 @@ type alias Model =
     }
 
 
-type Msg
-    = A
-    | B
-
-
 type Cell
     = Alive
     | Empty
+
+
+type Msg
+    = RunGeneration
